@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block layout %}
+<section>
+
+    <div class="bg-gradient-to-r from-purple-600 to-blue-600 font-[sans-serif] p-6 py-32">
+        <div class="container mx-auto flex flex-col justify-center items-center">
+            <h2 class="text-white text-3xl font-bold mb-4">Conoce los últimos autos en venta.</h2>
+            <p class="text-white text-base text-center mb-6">¡Date el gusto que tanto queres!</p>
+        </div>
+    </div>
+
+    <div>
+
+        <form class="mx-10 py-2 my-2" action="/buscar_auto" method="get">
+            <input placeholder="Buscar" class="border-2 p-1" type="text" name="search_value">
+            <button>→</button>
+
+            {% if message_search %}
+            <p class="text-red-500">{{message_search}}</p>
+            {% endif %}
+        </form>
+
+        <div class="w-full flex flex-wrap py-10">
+            {% if cars %}
+            {% for car in cars %}
+            <div
+                class="bg-white shadow-lg w-96 py-6 rounded-lg font-[sans-serif] mx-auto mt-4 border border-1 rounded-xl">
+                <div class="flex items-center gap-2 px-6">
+                    <h3 class="text-2xl text-[#333] font-extrabold flex-1">{{car.name}}</h3>
+                </div>
+                <img src="{{car.image}}" class="w-full my-6" />
+                <div class="px-6">
+                    <p class="text-sm text-gray-500">{{car.description}}</p>
+                    <div class="mt-10 flex items-center flex-wrap gap-4">
+                        <h3 class="text-xl text-[#333] font-bold flex-1">${{car.price}}</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <h1 class="font-bold text-gray-700 text-3xl mx-auto">No se encontró ningún valor con la búsqueda.</h1>
+            {% endif %}
+
+        </div>
+    </div>
+
+</section>
+
+{% if message_success %}
+<div class="fixed bottom-5 left-5 bg-green-500 px-10 py-1 text-white font-semibold hidden" id="modal_success">
+    <p>{{message_success}}</p>
+</div>
+{% endif %}
+
+<script>
+    window.addEventListener('load', function () {
+        showModal();
+    });
+
+    function showModal() {
+        const modal = document.querySelector("#modal_success")
+        modal.classList.remove("hidden")
+
+        setTimeout(() => {
+            modal.classList.add("hidden")
+        }, 5000)
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppKinda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-[sans-serif]">
+
+    <header class="w-full h-32 bg-white flex items-center justify-around">
+        <h1 class="text-[#2861EB] text-4xl font-bold">Kinda</h1>
+        <nav class="w-1/2 text-[#8638EA] flex items-center justify-around text-xl font-bold">
+            <a class="hover:text-[#2861EB]" href="{% url 'Inicio' %}">Inicio</a>
+            <a class="hover:text-[#2861EB]" href="{% url 'Empleados' %}">Empleados</a>
+            <a class="hover:text-[#2861EB]" href="{% url 'Autos' %}">Autos</a>
+            <a class="hover:text-[#2861EB]" href="{% url 'Clientes' %}">Clientes</a>
+        </nav>
+    </header>
+
+    {% block layout %}
+
+    {% endblock %}
+    <footer class="w-full h-32 bg-black flex items-center justify-start text-white p-5">
+        <h1 class="text-gray-400 text-sm ">Desarrollado por Ivan Garcilazo</h1>
+    </footer>
+</body>
+
+</html>
